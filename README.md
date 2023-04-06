@@ -11,6 +11,8 @@ rle - 2
 lzw - 3
 ```
   
+inputs: `file_type`, `file_size` - file size does make a difference  
+  
 ```
 Compression Method: 1, File Type: 1, Predicted Ratio: 0.6359836081329736
 Compression Method: 2, File Type: 1, Predicted Ratio: -0.46645259900887326
