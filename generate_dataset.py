@@ -7,7 +7,11 @@ import csv
 
 def calculate_compression_ratio(in_size, out_size):
     # could pass in file and do something like: `size = os.path.getsize(file)`
-    ratio = (1 - (out_size / in_size))  # * 100
+
+    if in_size == 0:
+        return 0
+
+    ratio = float(1 - (out_size / in_size))  # * 100
 
     return ratio
 
@@ -30,7 +34,7 @@ def get_file_count(path):
 
 
 def get_file_size(path):
-    return os.path.getsize(path) * 8
+    return os.path.getsize(path)
 
 
 def get_file_as_bytes(path):
@@ -87,7 +91,7 @@ for png in range(1, png_count - 1, 1):
     compressed_size = get_file_size("files_compressed/png/"+str(png)+".png")
     delete_file("files_compressed/png/"+str(png)+".png")
     ratio = calculate_compression_ratio(original_size, compressed_size)
-    new_entry = [2, original_size, 1, compressed_size, ratio]
+    new_entry = [2, original_size, 1, compressed_size, '{:.10f}'.format(ratio)]
     append_to_csv("results/results.csv", new_entry)
     print(new_entry)
 
@@ -97,7 +101,7 @@ for png in range(1, png_count - 1, 1):
     compressed_size = get_file_size("files_compressed/png/"+str(png)+".png")
     delete_file("files_compressed/png/"+str(png)+".png")
     ratio = calculate_compression_ratio(original_size, compressed_size)
-    new_entry = [2, original_size, 2, compressed_size, ratio]
+    new_entry = [2, original_size, 2, compressed_size, '{:.10f}'.format(ratio)]
     append_to_csv("results/results.csv", new_entry)
     print(new_entry)
 
@@ -107,14 +111,14 @@ for png in range(1, png_count - 1, 1):
     compressed_size = get_file_size("files_compressed/png/"+str(png)+".png")
     delete_file("files_compressed/png/"+str(png)+".png")
     ratio = calculate_compression_ratio(original_size, compressed_size)
-    new_entry = [2, original_size, 3, compressed_size, ratio]
+    new_entry = [2, original_size, 3, compressed_size, '{:.10f}'.format(ratio)]
     append_to_csv("results/results.csv", new_entry)
     print(new_entry)
 
     original_size = get_file_size("files_to_compress/png/"+str(png)+".png")
     compressed_size = original_size
     ratio = 0
-    new_entry = [2, original_size, 0, compressed_size, ratio]
+    new_entry = [2, original_size, 0, compressed_size, '{:.10f}'.format(ratio)]
     append_to_csv("results/results.csv", new_entry)
     print(new_entry)
 
@@ -127,7 +131,7 @@ for jpg in range(1, jpg_count - 1, 1):
     compressed_size = get_file_size("files_compressed/jpg/"+str(jpg)+".jpg")
     delete_file("files_compressed/jpg/"+str(jpg)+".jpg")
     ratio = calculate_compression_ratio(original_size, compressed_size)
-    new_entry = [3, original_size, 1, compressed_size, ratio]
+    new_entry = [3, original_size, 1, compressed_size, '{:.10f}'.format(ratio)]
     append_to_csv("results/results.csv", new_entry)
     print(new_entry)
 
@@ -137,7 +141,7 @@ for jpg in range(1, jpg_count - 1, 1):
     compressed_size = get_file_size("files_compressed/jpg/"+str(jpg)+".jpg")
     delete_file("files_compressed/jpg/"+str(jpg)+".jpg")
     ratio = calculate_compression_ratio(original_size, compressed_size)
-    new_entry = [3, original_size, 2, compressed_size, ratio]
+    new_entry = [3, original_size, 2, compressed_size, '{:.10f}'.format(ratio)]
     append_to_csv("results/results.csv", new_entry)
     print(new_entry)
 
@@ -147,14 +151,14 @@ for jpg in range(1, jpg_count - 1, 1):
     compressed_size = get_file_size("files_compressed/jpg/"+str(jpg)+".jpg")
     delete_file("files_compressed/jpg/"+str(jpg)+".jpg")
     ratio = calculate_compression_ratio(original_size, compressed_size)
-    new_entry = [3, original_size, 3, compressed_size, ratio]
+    new_entry = [3, original_size, 3, compressed_size, '{:.10f}'.format(ratio)]
     append_to_csv("results/results.csv", new_entry)
     print(new_entry)
 
     original_size = get_file_size("files_to_compress/jpg/"+str(jpg)+".jpg")
     compressed_size = original_size
     ratio = 0
-    new_entry = [3, original_size, 0, compressed_size, ratio]
+    new_entry = [3, original_size, 0, compressed_size, '{:.10f}'.format(ratio)]
     append_to_csv("results/results.csv", new_entry)
     print(new_entry)
 
@@ -167,7 +171,7 @@ for txt in range(1, txt_count - 1, 1):
     compressed_size = get_file_size("files_compressed/txt/"+str(txt)+".txt")
     delete_file("files_compressed/txt/"+str(txt)+".txt")
     ratio = calculate_compression_ratio(original_size, compressed_size)
-    new_entry = [1, original_size, 1, compressed_size, ratio]
+    new_entry = [1, original_size, 1, compressed_size, '{:.10f}'.format(ratio)]
     append_to_csv("results/results.csv", new_entry)
     print(new_entry)
 
@@ -177,7 +181,7 @@ for txt in range(1, txt_count - 1, 1):
     compressed_size = get_file_size("files_compressed/txt/"+str(txt)+".txt")
     delete_file("files_compressed/txt/"+str(txt)+".txt")
     ratio = calculate_compression_ratio(original_size, compressed_size)
-    new_entry = [1, original_size, 2, compressed_size, ratio]
+    new_entry = [1, original_size, 2, compressed_size, '{:.10f}'.format(ratio)]
     append_to_csv("results/results.csv", new_entry)
     print(new_entry)
 
@@ -187,13 +191,13 @@ for txt in range(1, txt_count - 1, 1):
     compressed_size = get_file_size("files_compressed/txt/"+str(txt)+".txt")
     delete_file("files_compressed/txt/"+str(txt)+".txt")
     ratio = calculate_compression_ratio(original_size, compressed_size)
-    new_entry = [1, original_size, 3, compressed_size, ratio]
+    new_entry = [1, original_size, 3, compressed_size, '{:.10f}'.format(ratio)]
     append_to_csv("results/results.csv", new_entry)
     print(new_entry)
 
     original_size = get_file_size("files_to_compress/txt/"+str(txt)+".txt")
     compressed_size = original_size
     ratio = 0
-    new_entry = [1, original_size, 0, compressed_size, ratio]
+    new_entry = [1, original_size, 0, compressed_size, '{:.10f}'.format(ratio)]
     append_to_csv("results/results.csv", new_entry)
     print(new_entry)
